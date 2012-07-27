@@ -10,11 +10,9 @@
       "type": "heavy battery"
     },
     "divisions": [
-        { "name": "10 Div",
-          "uid": "10",
-          "morale": "regular",
-          "commander": "Albert",
-          "command_rating": "average",
+        { "name": "10 Div", "uid": "10",
+          "morale": "regular", "discipline": 12, "initiative":14,
+          "commander": "Albert", "command_rating": "average", "inspiration": "average",
           "infantry": [
             { "name": "4 Provisional", "uid":  "10/4", "size": 2, "type": "conscript" },
             { "name": "139 Ligne", "uid":  "10/139", "size": 3, "type": "ligne" },
@@ -26,9 +24,8 @@
               "size": 2, "type": "foot battery"
             }]
         },
-        { "name": "16 Div",
-          "uid": "16",
-          "morale": "regular",
+        { "name": "16 Div", "uid": "16",
+          "morale": "regular", "discipline": 12, "initiative":14,
           "commander": "Maison",
           "command_rating": "average",
           "infantry": [
@@ -41,9 +38,8 @@
              "size": 2, "type": "foot battery"
            }]
         },
-        { "name": "19 Div",
-          "uid": "19",
-          "morale": "regular",
+        { "name": "19 Div", "uid": "19",
+          "morale": "regular", "discipline": 12, "initiative":14,
           "commander": "Vimeux",
           "command_rating": "average",
           "infantry": [
@@ -56,11 +52,9 @@
              "size": 2, "type": "foot battery"
            }]
         },
-        { "name": "6 Light Cavalry Brigade",
-          "uid": "6C",
-          "morale": "crack",
-          "commander": "Dermoncourt",
-          "command_rating": "average",
+        { "name": "6 Light Cavalry Brigade", "uid": "6C",
+          "morale": "crack", "discipline": 10, "initiative":16,
+          "commander": "Dermoncourt", "command_rating": "average", "inspiration": "inspiring",
           "cavalry": [
             { "name": "2 Chasseur", "uid": "6C/2", "size": 3, "type": "chasseur" }, 
             { "name": "3 Chasseur", "uid": "6C/3", "size": 2, "type": "chasseur" },

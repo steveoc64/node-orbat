@@ -4,11 +4,9 @@
     "prof_skill": "average",
     "inspiration": "average",
     "divisions": [
-        { "name": "4 Div",
-          "uid": "4",
-          "morale": "regular",
-          "commander": "Dubreton",
-          "command_rating": "average",
+        { "name": "4 Div", "uid": "4",
+          "morale": "regular", "discipline":12, "initiative":14,
+          "commander": "Dubreton", "command_rating": "average", "inspiration": "average",
           "infantry": [
             { "name": "24 Legere", "uid":  "4/24L", "size": 3, "type": "legere" },
             { "name": "19 Ligne", "uid":  "4/19", "size": 3, "type": "veteran ligne" },
@@ -19,11 +17,9 @@
               "size": 2, "type": "foot battery"
             } ]
         },
-        { "name": "5 Div",
-          "uid": "5",
-          "morale": "conscript",
-          "commander": "Dufour",
-          "command_rating": "average",
+        { "name": "5 Div", "uid": "5",
+          "morale": "conscript", "discipline":12, "initiative":14,
+          "commander": "Dufour", "command_rating": "average", "inspiration": "average",
           "infantry": [
             { "name": "26 Legere", "uid":  "4/26L", "size": 3, "type": "legere" },
             { "name": "93 Ligne", "uid":  "4/93", "size": 3, "type": "conscript ligne" },
@@ -35,11 +31,9 @@
               "size": 2, "type": "foot battery"
             } ]
         },
-        { "name": "6 Div",
-          "uid": "6",
-          "morale": "veteran",
-          "commander": "Vial",
-          "command_rating": "average",
+        { "name": "6 Div", "uid": "6",
+          "morale": "veteran", "discipline":14, "initiative":14,
+          "commander": "Vial", "command_rating": "average", "inspiration": "average",
           "infantry": [
             { "name": "11 Legere", "uid":  "6/11L", "size": 3, "type": "legere" },
             { "name": "2 Ligne", "uid":  "6/19", "size": 3, "type": "veteran ligne" },
