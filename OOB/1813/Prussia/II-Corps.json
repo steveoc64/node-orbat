@@ -6,7 +6,7 @@
     "divisions": [
         { "name": "9 Brigade", "uid": "9",
           "commander": "Klux", "command_rating": "average", "inspiration": "average",
-          "morale": "regular", "discipine": 14, "initiative": 12,
+          "morale": "regular", "discipline": 14, "initiative": 12,
           "infantry": [
             { "name": "1st West Prussian", "uid":  "9/Musket", "size": 3, "type": "musketeer" },
             { "name": "6th Reserve", "uid":  "9/Reserve", "size": 3, "type": "reserve" },
@@ -22,7 +22,7 @@
         }, 
         { "name": "10 Brigade", "uid": "10",
           "commander": "Pirch", "command_rating": "average", "inspiration": "average",
-          "morale": "regular", "discipine": 14, "initiative": 12,
+          "morale": "regular", "discipline": 14, "initiative": 12,
           "infantry": [
             { "name": "2nd West Prussian", "uid": "10/Musket", "size": 3, "type": "mukseteer" },
             { "name": "7th Reserve", "uid": "10/Reserve", "size": 3, "type": "reserve" },
@@ -37,7 +37,7 @@
         },
         { "name": "11 Brigade", "uid": "11",
           "commander": "Ziethen", "command_rating": "average", "inspiration": "average",
-          "morale": "regular", "discipine": 14, "initiative": 12,
+          "morale": "regular", "discipline": 14, "initiative": 12,
           "infantry": [
             { "name": "1st Silesian", "uid": "11/Musket", "size": 3, "type": "mukseteer" },
             { "name": "10th Reserve", "uid": "11/Reserve", "size": 3, "type": "reserve" },
@@ -53,7 +53,7 @@
         },
         { "name": "12 Brigade", "uid": "12",
           "commander": "Pruessen", "command_rating": "average", "inspiration": "average",
-          "morale": "regular", "discipine": 14, "initiative": 12,
+          "morale": "regular", "discipline": 14, "initiative": 12,
           "infantry": [
             { "name": "2nd Silesian", "uid": "12/Musket", "size": 3, "type": "mukseteer" },
             { "name": "11th Reserve", "uid": "12/Reserve", "size": 3, "type": "reserve" },
@@ -68,7 +68,7 @@
         },
         { "name": "Cavalry Brigade", "uid": "Cav",
           "commander": "Roder", "command_rating": "average", "inspiration": "inspirational",
-          "morale": "regular", "discipine": 14, "initiative": 12,
+          "morale": "regular", "discipline": 14, "initiative": 12,
           "cavalry": [
             { "name": "Kuirassier Brigade", "uid": "Cav/K", "size": 12, "type": "kuirassier" },
             { "name": "Silesian Landwehr Brigade", "uid": "Cav/LW", "size": 8, "type": "landwehr cavalry" }
