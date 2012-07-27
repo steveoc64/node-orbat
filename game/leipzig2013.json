@@ -1,0 +1,18 @@
+{
+"name": "Leipzig 1813",
+"year": "1813",
+"port": 1813,
+"tables": [
+    { "name": "Southern Front",
+     "attacker": {
+          "name": "Allies",
+          "corps": [ "Prussia/II-Corps" ]
+      },
+      "defender": {
+          "name": "France",
+          "corps": [ "France/II-Corps", 
+                     "France/V-Corps" ]
+      }
+    }
+    ]
+}

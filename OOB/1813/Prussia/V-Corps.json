@@ -1,0 +1,42 @@
+{
+    "name": "II Corps",
+    "commander": "GL Freidrich-Heinrich Kleist",
+    "prof_skill": "average",
+    "inspiration": "average",
+    "units": [
+        { "name": "9 Brigade",
+          "morale": "regular",
+          "commander": "Klux",
+          "command_rating": "average",
+          "units": [
+            { "name": "1st West Prussian",
+              "uid":  "9/M",
+              "size": 3,
+              "type": "musketeer"
+            },
+            { "name": "6th Reserve",
+              "uid":  "9/R",
+              "size": 3,
+              "type": "reserve"
+            },
+            { "name": "7 Silesian Landwehr",
+              "uid":  "9/L",
+              "size": 3,
+              "type": "landwehr"
+            }, 
+            { "name": "Schutzen",
+                "uid":  "9/S",
+              "size": 3,
+              "type": "schutzen"
+            }
+         ],
+         "artillery":  
+            { "name": "Artillery",
+              "uid":  "9/A",
+              "size": 1,
+              "type": "foot battery"
+            } 
+        }
+    ]
+
+}

@@ -1,0 +1,16 @@
+{
+"name": "Weekend Test Game 22 Jul 2012",
+"year": "1813",
+"tables": [
+    { "name": "Adbanced Guard",
+     "attacker": {
+          "name": "Allies",
+          "corps": [ "Prussia/Test-20120722" ]
+      },
+      "defender": {
+          "name": "France",
+          "corps": [ "France/Test-20120722" ]
+      }
+    }
+    ]
+}

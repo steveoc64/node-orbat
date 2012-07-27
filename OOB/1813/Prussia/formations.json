@@ -1,0 +1,8 @@
+[
+    { "name": "line",           "frontage": [ 12,11,10,9,8,7,6,5,4,3,2,1]},
+    { "name": "sk",             "frontage": [ 12,11,10,9,8,7,6,5,4,3,2,1]},
+    { "name": "ss",             "frontage": [ 12,11,10,9,8,7,6,5,4,3,2,1]},
+    { "name": "attack column",  "frontage": [ 6, 6, 6, 6,6,6,6,5,4,3,2,1]},
+    { "name": "column",         "frontage": [ 3, 3, 3, 3,3,3,3,3,3,3,2,1]},
+    { "name": "closed column",  "frontage": [ 3, 3, 3, 3,3,3,3,3,3,3,2,1]}
+]

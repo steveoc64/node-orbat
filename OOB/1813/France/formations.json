@@ -1,0 +1,6 @@
+[
+    { "name": "line",           "frontage": [ 9,8,7,6,5,4,3,2,1]},
+    { "name": "attack column",  "frontage": [ 5,5,5,5,5,3,3,2,1]},
+    { "name": "column",         "frontage": [ 3,3,3,3,3,3,3,2,1]},
+    { "name": "square",         "frontage": [ 2,2,2,2,2,2,2,2,1]}
+]

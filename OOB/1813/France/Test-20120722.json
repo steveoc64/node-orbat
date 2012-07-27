@@ -1,0 +1,41 @@
+{
+    "name": "Test - 20120722",
+    "commander": "Huguet-Chataux",
+    "prof_skill": "average",
+    "inspiration": "average",
+    "units": [
+        { "name": "4 Div",
+          "morale": "regular",
+          "commander": "Dubreton",
+          "command_rating": "average",
+          "units": [
+            { "name": "24 Legere",
+              "uid":  "4/24L",
+              "size": 3,
+              "type": "legere"
+            },
+            { "name": "19 Ligne",
+              "uid":  "4/19",
+              "size": 3,
+              "type": "veteran ligne"
+            },
+            { "name": "37 Ligne",
+              "uid":  "4/37",
+              "size": 3,
+              "type": "ligne"
+            }, 
+            { "name": "56 Ligne",
+                "uid":  "4/56",
+              "size": 3,
+              "type": "ligne"
+            } 
+            ],
+          "artillery": 
+            { "name": "4th Division Artillery",
+              "uid":  "4/A",
+              "size": 2,
+              "type": "foot battery"
+            } 
+        }
+    ]
+}

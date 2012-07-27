@@ -1,0 +1,75 @@
+{
+    "name": "V Corps",
+    "commander": "Lauriston",
+    "prof_skill": "average",
+    "inspiration": "average",
+    "artillery": 
+    { "name": "V Corps Artillery Reserve",
+      "uid": "VCorps/A",
+      "size": 2,
+      "type": "heavy battery"
+    },
+    "divisions": [
+        { "name": "10 Div",
+          "uid": "10",
+          "morale": "regular",
+          "commander": "Albert",
+          "command_rating": "average",
+          "infantry": [
+            { "name": "4 Provisional", "uid":  "10/4", "size": 2, "type": "conscript" },
+            { "name": "139 Ligne", "uid":  "10/139", "size": 3, "type": "ligne" },
+            { "name": "140 Ligne", "uid":  "10/140", "size": 3, "type": "conscript ligne" }, 
+            { "name": "141 Ligne", "uid":  "10/141", "size": 3, "type": "conscript ligne" } 
+            ],
+            "artillery": [
+            { "name": "10th Division Artillery", "uid": "10/A",
+              "size": 2, "type": "foot battery"
+            }]
+        },
+        { "name": "16 Div",
+          "uid": "16",
+          "morale": "regular",
+          "commander": "Maison",
+          "command_rating": "average",
+          "infantry": [
+            { "name": "152 Ligne", "uid":  "16/152", "size": 3, "type": "ligne" },
+            { "name": "153 Ligne", "uid":  "16/153", "size": 3, "type": "ligne" },
+            { "name": "154 Ligne", "uid":  "16/154", "size": 3, "type": "ligne" }
+           ],
+           "artillery": [
+           { "name": "16th Division Artillery", "uid": "16/A",
+             "size": 2, "type": "foot battery"
+           }]
+        },
+        { "name": "19 Div",
+          "uid": "19",
+          "morale": "regular",
+          "commander": "Vimeux",
+          "command_rating": "average",
+          "infantry": [
+            { "name": "135 Ligne", "uid":  "19/135", "size": 3, "type": "ligne" },
+            { "name": "149 Ligne", "uid":  "19/149", "size": 3, "type": "ligne" }, 
+            { "name": "150 Ligne", "uid":  "19/150", "size": 3, "type": "ligne" }
+           ],
+           "artillery": [
+           { "name": "19th Division Artillery", "uid": "19/A",
+             "size": 2, "type": "foot battery"
+           }]
+        },
+        { "name": "6 Light Cavalry Brigade",
+          "uid": "6C",
+          "morale": "crack",
+          "commander": "Dermoncourt",
+          "command_rating": "average",
+          "cavalry": [
+            { "name": "2 Chasseur", "uid": "6C/2", "size": 3, "type": "chasseur" }, 
+            { "name": "3 Chasseur", "uid": "6C/3", "size": 2, "type": "chasseur" },
+            { "name": "6 Chasseur", "uid": "6C/6", "size": 3, "type": "chasseur" }
+            ],
+            "artillery": [
+            { "name": "6th Light Cav Brigade Artillery", "uid": "6C/A",
+              "size": 2, "type": "horse battery"
+            }]
+        }
+    ]
+}

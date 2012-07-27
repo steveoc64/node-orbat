@@ -1,0 +1,10 @@
+{
+    "morale": [ "good", "shaken", "bad"],
+    "ammo": 20,
+    "casualties": 0,
+    "disorder": 0,
+    "fatigue": 0,
+    "formation": [ "ln", "col", "sq", "hsq", "cc", "ss", "sk", "ac" ],
+    "control": [ "good", "consolidated", "positional", "tiralleur" ],
+    "position": [ "advance","first line","support","reserve","left flank","right flank"]
+}
