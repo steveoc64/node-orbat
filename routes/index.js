@@ -4,5 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'OOB Manager' });
+  res.render('index', { title: 'La Bricole' });
 };
+

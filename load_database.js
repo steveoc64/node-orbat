@@ -3,55 +3,17 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , util = require('util')
+var http = require('http')
   , redis = require('redis')
+  , ss = require('socketstream')
   , db = redis.createClient();
-
-
-var app = express();
-
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
-
-app.get('/', routes.index);
-
-app.get('/France', function(req,res) {
-    db.keys('France*',function(e,r){
-        if (e) res.send('Error: '+e);
-        else res.send(r);
-    })
-});
-
-app.get('/unit',function(req,res) {
-    db.hgetall("France/V-Corps:19/149:3",function(e,r){
-        if (e) res.send('Error: '+e);
-        else res.send(r);
-    })
-});
-
 
 // Get the game name
 if (process.argv.length >= 3) {
     // clear the redis db
 
     // Load the game
-    game = require('./game');
+    game = require('./game/game_lib');
     use_db = 0;
     if (process.argv.length > 3 && process.argv[3] == '-init') {
         use_db = db;
@@ -67,15 +29,14 @@ if (process.argv.length >= 3) {
     if (game.port) {
         port = game.port;
     }
-    
-    http.createServer(app).listen(port, function(){
-        console.log("Express server listening on port " + port);
-    });
+    var server = http.Server(ss.http.middleware);
+    server.listen(port+1);
+    ss.start(server);
 
     if (use_db) {
-        console.log('ORBAT Parses OK - Database re-initialised');
+        console.log(('ORBAT Parses OK - Database re-initialised').red);
     } else {
-        console.log('ORBAT Parses OK - Database NOT written to');
+        console.log(('ORBAT Parses OK - Database NOT written to').green);
     }
    
 } else {

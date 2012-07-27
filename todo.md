@@ -12,7 +12,7 @@ Thu Jul 26 22:27:06 CST 2012
         - division orders *
         - corps orders *
 
-    - use game library in SS application
+    - create game play application, using socketstream
 
     - connect client to command
 

@@ -76,6 +76,16 @@
           "artillery": [
             { "name": "Artillery", "uid":  "Cav/Guns", "size": 2, "type": "horse battery" } 
           ]
+        },
+        { "name": "Artillery Reserve", "uid": "Guns",
+          "commander": "Braun", "command_rating": "average", "inspiration": "average",
+          "morale": "regular", "discipline":14, "initiative":10,
+          "artillery": [
+            { "name": "Heavy", "uid":  "Guns/Heavy", "size": 2, "type": "heavy battery" },
+            { "name": "Medium", "uid":  "Guns/Medium", "size": 3, "type": "foot battery" },
+            { "name": "Horse", "uid":  "Guns/Horse", "size": 1, "type": "horse battery" },
+            { "name": "Howitzer", "uid":  "Guns/Howitzer", "size": 1, "type": "howitzer battery" }
+          ]
         }
     ]
 }

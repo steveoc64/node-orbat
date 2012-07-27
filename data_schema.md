@@ -24,7 +24,7 @@ desc:   List of Divisions in that Corps. Note that the Corps name is
 
 name:   <corps_name>
 type:   HASH
-fields: [ name,commander,prof_skill,inspiration ]
+fields: [ commander,prof_skill,inspiration ]
 desc:   Details of the Corps
 
 name:   CorpsOrder:<corps_name>
@@ -35,7 +35,7 @@ desc:   Current active order for a Corps
 
 name:   Orders:<corps_name>:<UID>
 type:   HASH
-fields: [ time,order,objective,duration,pending_time,pending_order,pending_objective ]
+fields: [ time,order,objective,duration,activation_progress,pending_time,pending_order,pending_objective ]
 desc:   Current active and pending order for an ME
 
 
@@ -55,7 +55,7 @@ fields:
           d-marks,c-marks,losses,move,battle,cp,formation,position]
 
             Command Elements - Div HQ 
-        [ name,eliteness,morale,discipline,initiative,commander,command_rating,position,
+        [ name,eliteness,morale,discipline,initiative,commander,command_rating,position,impetus,
           inspiration,campaign_fatigue,cil,order,objective,engaged,deployment,losses,caps_used ]
 
 desc:   Details for individual unit (Battalion / Squadron / Battery / HQ) within a Corps.

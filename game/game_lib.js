@@ -1,7 +1,7 @@
 // Load a game
 
-exports.unit_states = require('./game/unit_states.json');
-exports.order_types = require('./game/order_types.json');
+exports.unit_states = require('./unit_states.json');
+exports.order_types = require('./order_types.json');
 
 var base_ut = {
         "name": "undefined",
@@ -18,7 +18,7 @@ var base_ut = {
 
 exports.load = function(req_filename,db) {
     // Load the game
-    var filename = './game/'+req_filename+'.json';
+    var filename = './'+req_filename+'.json';
     game = require(filename);
     this.filename = filename;
     console.log('Loading Game: ', filename);
@@ -39,8 +39,6 @@ exports.load = function(req_filename,db) {
 
         console.log("========= Game Tables =========");
         console.log("Table:      ",table.name);
-        console.log("-------------------------------------------------------");
-        console.log("Attacker: ",table.attacker.name);
 
         if (db) { 
             db.sadd('Tables',table.name);
@@ -50,11 +48,15 @@ exports.load = function(req_filename,db) {
         }
 
         // Load Attacker OOBs for this table
+        console.log("-------------------------------------------------------");
+        console.log("Attacker: ",table.attacker.name);
         game.tables[table_index].attacker_corps = new Array(table.attacker.corps.length);
         table.attacker.corps.forEach(function(corps_name,index,array) {
             load_corps(game,table,table_index,'A',corps_name,index,array,db);
         });
         // Load Defender OOBs for this table
+        console.log("-------------------------------------------------------");
+        console.log("Defender: ",table.defender.name);
         game.tables[table_index].defender_corps = new Array(table.defender.corps.length);
         table.defender.corps.forEach(function(corps_name,index,array) {
             load_corps(game,table,table_index,'D',corps_name,index,array,db);
@@ -86,10 +88,10 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
 
             // Load the appropriate unit types file
             var nation = corps_name.split('/')[0];
-            var unit_types = require('./OOB/'+game.year+'/'+nation+'/unit_types.json');
+            var unit_types = require('../OOB/'+game.year+'/'+nation+'/unit_types.json');
 
             // Load the OOB file
-            var corps = require('./OOB/'+game.year+'/'+corps_name+'.json');
+            var corps = require('../OOB/'+game.year+'/'+corps_name+'.json');
             if (attacker_defender == 'A') {
                 game.tables[table_index].attacker_corps.push(corps);
             } else {
@@ -204,6 +206,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                        unit_types.forEach(function(ut,i,a) {
                             if (ut.name.toLowerCase() == bt.type.toLowerCase()) {
                                 use_ut = ut;
+                                console.log('found match for',bt.type,'on',ut.name);
                             }
                         });
 
