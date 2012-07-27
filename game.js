@@ -28,7 +28,7 @@ exports.load = function(req_filename,db) {
 
     if (db) {
         db.flushall();
-        db.hmset('game'
+        db.hmset('Game'
                 ,'filename',filename
                 ,'name',game.name
                 ,'year',game.year
@@ -43,8 +43,8 @@ exports.load = function(req_filename,db) {
         console.log("Attacker: ",table.attacker.name);
 
         if (db) { 
-            db.sadd('tables',table.name);
-            db.hmset('table:'+table.name
+            db.sadd('Tables',table.name);
+            db.hmset('Table:'+table.name
                 ,'attacker',table.attacker.name
                 ,'defender',table.defender.name);
         }
@@ -78,9 +78,9 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
 
             if (db) {
                 if (attacker_defender == 'A') {
-                    db.sadd('corps:'+table.name+':'+table.attacker.name,corps_name);
+                    db.sadd('Corps:'+table.name+':'+table.attacker.name,corps_name);
                 } else {
-                    db.sadd('corps:'+table.name+':'+table.defender.name,corps_name);
+                    db.sadd('Corps:'+table.name+':'+table.defender.name,corps_name);
                 }
             }
 
@@ -96,11 +96,63 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                 game.tables[table_index].defender_corps.push(corps);
             }
 
+            if (db) {
+                // Create the Corps record
+                db.hmset(corps.name
+                    ,"commander",corps.commander
+                    ,"prof_skill",corps.prof_skill
+                    ,"inspiration",corps.inspiration);
+    
+                // Create initial orders for the Corps
+                db.hmset('CorpsOrders:'+corps_name
+                    ,"time",0
+                    ,"order","defend"
+                    ,"objective","current ground"
+                    ,"duration",0
+                    ,"pending_time",0
+                    ,"pending_order",""
+                    ,"pending_objective","");
+            }
+
             console.log ("\t",corps.name, "(", corps.commander, ")");
             corps.divisions.forEach(function(division,div_index,div_array) {
 
                 if (db) {
-                    db.sadd(corps_name,division.name);
+                    db.sadd(corps_name+':Divisions',division.name);
+  
+                    // Create the Division record
+                    db.hmset(corps_name+':'+division.uid
+                        ,"name", division.name
+                        ,"eliteness", division.morale
+                        ,"morale", "good"
+                        ,"discipline", division.discipline
+                        ,"initiative", division.initiative
+                        ,"commander", division.commander
+                        ,"command_rating", division.command_rating
+                        ,"inspiration", division.inspiration
+                        ,"campaign_fatigue", 0
+                        ,"cil", 0
+                        ,"position", "reserve"
+                        ,"impetus", 0
+                        ,"order", "reserve"
+                        ,"objective", "none"
+                        ,"engaged", 0
+                        ,"deployment", 3    // regular campaign column
+                        ,"losses", 0
+                        ,"caps_used", 0
+                    );
+                    
+                    // Create initial orders for the Division
+                    db.hmset('Orders:'+corps_name+':'+division.uid
+                            ,"time",0
+                            ,"order","reserve"
+                            ,"objective",""
+                            ,"duration",0
+                            ,"activation_progress",0
+                            ,"pending_time",0
+                            ,"pending_order",""
+                            ,"pending_objective","");
+
                 }
 
                 // get the battalion count
@@ -133,6 +185,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                                     ,'c-marks',0
                                     ,'losses',0
                                     ,'cp',use_ut.cp
+                                    ,'cil',0
                                     ,'formation',use_ut.formation
                                     ,'position','reserve');
                             }
@@ -171,6 +224,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                                     ,'c-marks',0
                                     ,'losses',0
                                     ,'cp',use_ut.cp
+                                    ,'cil',0
                                     ,'formation',use_ut.formation
                                     ,'position','reserve');
                         }
@@ -209,6 +263,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                                 ,'move',0
                                 ,'battle',0
                                 ,'cp',use_ut.cp
+                                ,'cil',0
                                 ,'formation',use_ut.formation
                                 ,'position','reserve');
                         }

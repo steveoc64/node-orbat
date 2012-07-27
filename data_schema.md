@@ -1,43 +1,63 @@
-name:   game
+name:   Game
 type:   HASH
 fields: [ filename, name, year, port ]
 desc:   Overview of the current game loaded into the current database
 
-name:   tables
+name:   Tables
 type:   SET
 desc:   List of tables being played in the current game
 
-name:   table:<table_name>
+name:   Table:<table_name>
 type:   HASH
 fields: [ attacker, defender ]
 desc:   A description of the table, who is the attacker and who is the defender
 
-name:   corps:<table_name>:<side_name>
+name:   Corps:<table_name>:<side_name>
 type:   SET
 desc:   List of Corps that are controlled by a side for a given table. 
         Corps names are in the format   Country/Corps-Name
 
-name:   <corps_name>
+name:   <corps_name>:Divisions
 type:   SET
 desc:   List of Divisions in that Corps. Note that the Corps name is 
         in the format Countr/Corps-Name, so similar numbered corps from different nations do not clash
 
+name:   <corps_name>
+type:   HASH
+fields: [ name,commander,prof_skill,inspiration ]
+desc:   Details of the Corps
+
+name:   CorpsOrder:<corps_name>
+type:   HASH
+fields: [ time,order,objective,duration ]
+desc:   Current active order for a Corps
+
+
+name:   Orders:<corps_name>:<UID>
+type:   HASH
+fields: [ time,order,objective,duration,pending_time,pending_order,pending_objective ]
+desc:   Current active and pending order for an ME
+
+
 name:   <corps_name>:<UID>
 type:   HASH
 fields:
-        For Battalions / Squadrons / Batteries
-        [ name,type,morale,eliteness,firepower,size,ammo,fatigue,d-marks,c-marks,losses,cp,formation,position ] (infantry) 
-        [ name,type,morale,eliteness,firepower,gun_class,calibre,size,ammo,fatigue,d-marks,c-marks,losses,cp,formation,postion ] (arty)
-        [ name,type,morale,eliteness,firepower,size,ammo,fatigue,blown,battlemad,d-marks,c-marks,losses,move,battle,cp,formation,position] (cav)
+            Infantry
+        [ name,type,morale,eliteness,firepower,size,ammo,fatigue,
+         d-marks,c-marks,losses,cp,formation,position ]
 
-        Command Elements - Div HQ 
-        [ name,
+            Artillery
+        [ name,type,morale,eliteness,firepower,gun_class,calibre,size,
+          ammo,fatigue,d-marks,c-marks,losses,cp,formation,postion ]
 
-desc:   Details for individual unit (Battalion / Squadron / Battery) within a Corps.
+            Cavalry
+        [ name,type,morale,eliteness,firepower,size,ammo,fatigue,blown,battlemad,
+          d-marks,c-marks,losses,move,battle,cp,formation,position]
+
+            Command Elements - Div HQ 
+        [ name,eliteness,morale,discipline,initiative,commander,command_rating,position,
+          inspiration,campaign_fatigue,cil,order,objective,engaged,deployment,losses,caps_used ]
+
+desc:   Details for individual unit (Battalion / Squadron / Battery / HQ) within a Corps.
         Note that the Corps name is in the format Country/Corps-Name,
         and the UID is in the format DivisionNumber/UnitID
-
-
-
-
-desc:   List of name: table:<name of table>

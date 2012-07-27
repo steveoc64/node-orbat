@@ -2,75 +2,91 @@
     { "name": "legere",
        "size": 9,
        "morale": "elite",
+       "cp": 14,
        "firepower": "elite",
        "skirmish": 3,
        "shock": 0,
-       "drill": "A"
+       "drill": "A",
+       "formation": "ss"
      },
      { "name": "ligne",
        "size": 9,
        "morale": "regular",
+       "cp": 10,
        "firepower": "regular",
        "skirmish": 1,
        "shock": 0,
-       "drill": "A"
+       "drill": "A",
+       "formation": "column"
+
      },
      { "name": "veteran ligne",
        "size": 9,
        "morale": "veteran",
+       "cp": 12,
        "firepower": "veteran",
        "skirmish": 1,
        "shock": 2,
-       "drill": "A"
+       "drill": "A",
+       "formation": "column"
      },
      { "name": "conscript ligne",
        "size": 9,
        "morale": "conscript",
+       "cp": 9,
        "firepower": "conscript",
        "skirmish": 1,
        "shock": 0,
-       "drill": "A"
+       "drill": "A",
+       "formation": "column"
      }, 
      { "name": "foot battery",
        "artillery": true,
        "size": 3,
        "morale": "veteran",
+       "cp": 12,
        "firepower": "regular",
        "skirmish": 0,
        "shock": 0,
        "drill": "A",
        "gun_class": "II",
-       "calibre": 8
+       "calibre": 8,
+       "formation": "column"
      },
      { "name": "heavy battery",
        "artillery": true,
        "size": 4,
        "morale": "crack",
+       "cp": 13,
        "firepower": "regular",
        "skirmish": 0,
        "shock": 0,
        "drill": "A",
        "gun_class": "II",
-       "calibre": 12
+       "calibre": 12,
+       "formation": "column"
      },
      { "name": "horse battery",
        "artillery": true,
        "size": 3,
-       "morale": "veteran",
+       "morale": "elite",
+       "cp": 14,
        "firepower": "regular",
        "skirmish": 0,
        "shock": 0,
        "drill": "A",
        "gun_class": "II",
-       "calibre": 6
+       "calibre": 6,
+       "formation": "column"
      },
      { "name": "chasseur",
        "cavalry": true,
        "size": 1,
        "morale": "crack",
-       "ace": 18,
+       "cp": 18,
        "shock": 1,
-       "moverate": "Light"
+       "moverate": "Light",
+       "formation": "column"
      }
 
 ]

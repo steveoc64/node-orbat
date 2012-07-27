@@ -7,8 +7,10 @@ Thu Jul 26 22:27:06 CST 2012
         - battalion state *
         - squadron state *
         - battery state *
-        - division state <<
-        - corps state <<
+        - division state *
+        - corps state *
+        - division orders *
+        - corps orders *
 
     - use game library in SS application
 

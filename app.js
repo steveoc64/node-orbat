@@ -38,6 +38,13 @@ app.get('/France', function(req,res) {
     })
 });
 
+app.get('/unit',function(req,res) {
+    db.hgetall("France/V-Corps:19/149:3",function(e,r){
+        if (e) res.send('Error: '+e);
+        else res.send(r);
+    })
+});
+
 
 // Get the game name
 if (process.argv.length >= 3) {
@@ -64,6 +71,12 @@ if (process.argv.length >= 3) {
     http.createServer(app).listen(port, function(){
         console.log("Express server listening on port " + port);
     });
+
+    if (use_db) {
+        console.log('ORBAT Parses OK - Database re-initialised');
+    } else {
+        console.log('ORBAT Parses OK - Database NOT written to');
+    }
    
 } else {
     console.log('Usage: node app.js <name-of-game> (-init to initialise the database)');
