@@ -24,9 +24,14 @@ desc:   List of Divisions in that Corps. Note that the Corps name is
 
 name:   <corps_name>:<UID>
 type:   HASH
-fields: [ name,type,morale,eliteness,firepower,size,ammo,fatigue,d-marks,c-marks,losses,cp,formation,position ] (infantry) 
+fields:
+        For Battalions / Squadrons / Batteries
+        [ name,type,morale,eliteness,firepower,size,ammo,fatigue,d-marks,c-marks,losses,cp,formation,position ] (infantry) 
         [ name,type,morale,eliteness,firepower,gun_class,calibre,size,ammo,fatigue,d-marks,c-marks,losses,cp,formation,postion ] (arty)
         [ name,type,morale,eliteness,firepower,size,ammo,fatigue,blown,battlemad,d-marks,c-marks,losses,move,battle,cp,formation,position] (cav)
+
+        Command Elements - Div HQ 
+        [ name,
 
 desc:   Details for individual unit (Battalion / Squadron / Battery) within a Corps.
         Note that the Corps name is in the format Country/Corps-Name,

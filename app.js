@@ -40,12 +40,20 @@ app.get('/France', function(req,res) {
 
 
 // Get the game name
-if (process.argv.length == 3) {
+if (process.argv.length >= 3) {
     // clear the redis db
 
     // Load the game
     game = require('./game');
-    game.load(process.argv[2],db);
+    use_db = 0;
+    if (process.argv.length > 3 && process.argv[3] == '-init') {
+        use_db = db;
+        console.log('Initialising Database');
+    } else {
+        console.log('Database will NOT be written to');
+    }
+
+    game.load(process.argv[2],use_db);
 
     // All good - fire up the web server
     port = 3000;
@@ -58,6 +66,6 @@ if (process.argv.length == 3) {
     });
    
 } else {
-    console.log('Usage: node app.js <name-of-game>');
+    console.log('Usage: node app.js <name-of-game> (-init to initialise the database)');
 }
 
