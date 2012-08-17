@@ -1,5 +1,43 @@
 TODO
 
+Sun Jul 29 10:24:50 CST 2012
+============================
+- create master console app using flatiron
+- create client MVC app using emberjs
+
+- client connects:
+    - if registered, direct them to the player page
+    - if not registered, tell console, and allow umpire to connect them (use generated token)
+
+- create AI Div commander using flatiron
+- create AI Corps commander using flatiron
+- connect AI Div / Corps commander to commands
+
+- player console :
+    - show OOB
+    - issue order to Corps
+    - issue order to ME
+    - lock
+    - show GT movement event
+    - 
+
+- umpire console :
+    - disconnect client
+    - set date/time in game
+    - generate GT movement orders
+    - define engagements
+    - cancel engagements
+
+Paint:
+    - flags
+    - primer all
+    - basecoat all
+    - base up all Bn in holding area
+
+Orders:
+    - Lancashire, round off the the French, get some Prussians
+
+
 Thu Jul 26 22:27:06 CST 2012
 =============================
     - Load OOB as a library
@@ -12,19 +50,7 @@ Thu Jul 26 22:27:06 CST 2012
         - division orders *
         - corps orders *
 
-    - create game play application, using socketstream
-
-    - connect client to command
-
-    - connect AI to command
-
-    - client to view their OOB
-    - client to pass orders to OOB
-
-    - disconnect client from console
-    - disconnect client from client
-    - client lock / password
-
+    - create game play application, using socketstream *
 
 Sun Jul 22 13:28:17 CST 2012
 Client assignment to commander

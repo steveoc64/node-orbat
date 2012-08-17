@@ -18,13 +18,15 @@ var base_ut = {
 
 exports.load = function(req_filename,db) {
     // Load the game
-    var filename = './'+req_filename+'.json';
+    var filename = './'+req_filename+'/config.json';
+    console.log('Loading Game: ', filename);
     game = require(filename);
     this.filename = filename;
-    console.log('Loading Game: ', filename);
 
     console.log('Game: ',game.name);
     console.log('Year: ',game.year);
+    console.log('Date: ',game.date,game.startTime);
+    console.log('Game Time: ',game.gameTime);
 
     if (db) {
         db.flushall();
@@ -32,6 +34,9 @@ exports.load = function(req_filename,db) {
                 ,'filename',filename
                 ,'name',game.name
                 ,'year',game.year
+                ,'date',game.date
+                ,'startTime',game.startTime
+                ,'gameTime',game.gameTime
                 ,'port',game.port);
     }
 
@@ -206,7 +211,6 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                        unit_types.forEach(function(ut,i,a) {
                             if (ut.name.toLowerCase() == bt.type.toLowerCase()) {
                                 use_ut = ut;
-                                console.log('found match for',bt.type,'on',ut.name);
                             }
                         });
 

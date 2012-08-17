@@ -20,6 +20,13 @@ ss.client.define('main', {
 // Serve this client on the root URL
 ss.http.route('/', function(req, res){
   res.serveClient('main');
+  var ip = req.connection.remoteAddress;
+  if (ip == '127.0.0.1') {
+      console.log('Connection from umpire console');
+  } else {
+        console.log('Connection from',req.connection.remoteAddress);
+  }
+
 })
 
 ss.http.route('/key', function(req,res) {
@@ -45,23 +52,30 @@ ss.client.templateEngine.use(require('ss-hogan'));
 // Minimize and pack assets if you type: SS_ENV=production node app.js
 if (ss.env == 'production') ss.client.packAssets();
 
-// Get the game name
-if (process.argv.length >= 3) {
-    // clear the redis db
+// Get the game from redis
+var game;
+db.hgetall('Game',function(e,r){
+    if (e) { 
+        console.log('Error:',e); 
+    } else {
+        game = r;
+        console.log('Loaded game:',game)
+    
+        // All good - fire up the web server
+        port = 3000;
+        if (game.port) {
+            port = game.port;
+        } else {
+            console.log(('WARNING: game data must include a port to run the game on. No Port found, defaulting to 3000').red);
+        }
+        console.log('Starting server on port',port);
+        var server = http.Server(ss.http.middleware);
+        server.listen(port);
+        ss.start(server);
 
-    // Load the game
-    game = require('./game/game_lib');
-    game.load(process.argv[2],0);
-
-    // All good - fire up the web server
-    port = 3000;
-    if (game.port) {
-        port = game.port;
+        // Send a message every 6 seconds
+        setInterval(ss.publish.all('tick','tickage'),6000);
     }
-    var server = http.Server(ss.http.middleware);
-    server.listen(port);
-    ss.start(server);
-} else {
-    console.log('Usage: node app.js <name-of-game> (-init to initialise the database)');
-}
+});
+
 
