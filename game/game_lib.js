@@ -18,7 +18,7 @@ var base_ut = {
 
 exports.load = function(req_filename,db) {
     // Load the game
-    var filename = './'+req_filename+'/config.json';
+    var filename = './'+req_filename+'.json';
     console.log('Loading Game: ', filename);
     game = require(filename);
     this.filename = filename;
@@ -44,27 +44,81 @@ exports.load = function(req_filename,db) {
 
         console.log("========= Game Tables =========");
         console.log("Table:      ",table.name);
+        console.log("Map Size:   ",table.map.size_x,",",table.map.size_y);
 
         if (db) { 
             db.sadd('Tables',table.name);
             db.hmset('Table:'+table.name
                 ,'attacker',table.attacker.name
-                ,'defender',table.defender.name);
+                ,'defender',table.defender.name
+                ,"size_x",table.map.size_x
+                ,"size_y",table.map.size_y);
         }
+
+        // Create the Map: record for the objectives on this table
+        table.map.objectives.forEach(function(objective,obj_index,obj_array) {
+            console.log("Objective: ",objective.name);
+            console.log("Desc: ",objective.desc);
+            console.log("GridLocation: ",objective.x,",",objective.y);
+            console.log("UT: ",objective.ut);
+            console.log("Cover: ",objective.cover);
+            console.log("Value: ",objective.value);
+
+            if (db) {
+                db.sadd("Objectives:"+table.name,objective.name);
+                db.hmset("Map:"+table.name+':'+objective.name
+                    ,"desc",objective.desc
+                    ,"x",objective.x
+                    ,"y",objective.y
+                    ,"value",objective.value
+                    ,"cover",objective.cover);
+                
+                // Now create the grid entry for this objective .. bottom right corner is 1,1
+                var grid_x = Math.floor(1.0 + objective.x);
+                var grid_y = Math.floor(1.0 + objective.y);
+                db.hmset("Grid:"+table.name+':'+grid_x+','+grid_y
+                    ,"ut",objective.ut
+                    ,"objective",objective.name);
+
+                // Now fill in the blank parts of the map
+                grid_x = grid_y = 1;
+                while (grid_x <= table.map.size_x) {
+                    while (grid_y <= table.map.size_y) {
+                        var rand_num = Math.random();
+                        var rand_ut = "rolling";
+                        var num_variable_terrains = table.map.terrain.length;
+                        if (rand_num > table.map.rolling) {
+                            // Not rolling, so pick a terrain type from the list of allowed tyoes for this map
+                            rand_num = Math.floor(Math.random()*num_variable_terrains);
+                            rand_ut = table.map.terrain[rand_num];
+                            console.log('there are',num_variable_terrains,'in array',table.map.terrain,'and the',rand_num+'th','element is',rand_ut);
+                        }
+                        var grid_key = "Grid:"+table.name+':'+grid_x+','+grid_y;
+                        db.hsetnx(grid_key,"ut",rand_ut);
+                        grid_y++;
+                    }
+                    // next row
+                    grid_x++;
+                    grid_y=1;
+                }
+            }
+        });
+
 
         // Load Attacker OOBs for this table
         console.log("-------------------------------------------------------");
         console.log("Attacker: ",table.attacker.name);
         game.tables[table_index].attacker_corps = new Array(table.attacker.corps.length);
-        table.attacker.corps.forEach(function(corps_name,index,array) {
-            load_corps(game,table,table_index,'A',corps_name,index,array,db);
+        table.attacker.corps.forEach(function(corps_data,index,array) {
+            console.log(corps_data);
+            load_corps(game,table,table_index,'A',corps_data,index,array,db);
         });
         // Load Defender OOBs for this table
         console.log("-------------------------------------------------------");
         console.log("Defender: ",table.defender.name);
         game.tables[table_index].defender_corps = new Array(table.defender.corps.length);
-        table.defender.corps.forEach(function(corps_name,index,array) {
-            load_corps(game,table,table_index,'D',corps_name,index,array,db);
+        table.defender.corps.forEach(function(corps_data,index,array) {
+            load_corps(game,table,table_index,'D',corps_data,index,array,db);
         });
 
         console.log("-------------------------------------------------------");
@@ -79,24 +133,24 @@ exports.load = function(req_filename,db) {
     return this;
 }
 
-load_corps = function(game,table,table_index,attacker_defender,corps_name,index,array,db) {
+load_corps = function(game,table,table_index,attacker_defender,corps_data,index,array,db) {
             // declare vars in scope
             var corps, bn_count, bty_count, sq_count;
 
             if (db) {
                 if (attacker_defender == 'A') {
-                    db.sadd('Corps:'+table.name+':'+table.attacker.name,corps_name);
+                    db.sadd('Corps:'+table.name+':'+table.attacker.name,corps_data.unit);
                 } else {
-                    db.sadd('Corps:'+table.name+':'+table.defender.name,corps_name);
+                    db.sadd('Corps:'+table.name+':'+table.defender.name,corps_data.unit);
                 }
             }
 
             // Load the appropriate unit types file
-            var nation = corps_name.split('/')[0];
+            var nation = corps_data.unit.split('/')[0];
             var unit_types = require('../OOB/'+game.year+'/'+nation+'/unit_types.json');
 
             // Load the OOB file
-            var corps = require('../OOB/'+game.year+'/'+corps_name+'.json');
+            var corps = require('../OOB/'+game.year+'/'+corps_data.unit+'.json');
             if (attacker_defender == 'A') {
                 game.tables[table_index].attacker_corps.push(corps);
             } else {
@@ -105,13 +159,16 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
 
             if (db) {
                 // Create the Corps record
-                db.hmset(corps.name
+                db.hmset(corps_data.unit
                     ,"commander",corps.commander
                     ,"prof_skill",corps.prof_skill
-                    ,"inspiration",corps.inspiration);
+                    ,"inspiration",corps.inspiration
+                    ,"x", corps_data.x
+                    ,"y", corps_data.y
+                    ,"deploy", corps_data.deploy);
     
                 // Create initial orders for the Corps
-                db.hmset('CorpsOrders:'+corps_name
+                db.hmset('CorpsOrders:'+corps_data.unit
                     ,"time",0
                     ,"order","defend"
                     ,"objective","current ground"
@@ -125,10 +182,10 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
             corps.divisions.forEach(function(division,div_index,div_array) {
 
                 if (db) {
-                    db.sadd(corps_name+':Divisions',division.name);
+                    db.sadd(corps_data.unit+':Divisions',division.name);
   
                     // Create the Division record
-                    db.hmset(corps_name+':'+division.uid
+                    db.hmset(corps_data.unit+':'+division.uid
                         ,"name", division.name
                         ,"eliteness", division.morale
                         ,"morale", "good"
@@ -144,13 +201,13 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                         ,"order", "reserve"
                         ,"objective", "none"
                         ,"engaged", 0
-                        ,"deployment", 3    // regular campaign column
+                        ,"deployment", corps_data.deploy  
                         ,"losses", 0
                         ,"caps_used", 0
                     );
                     
                     // Create initial orders for the Division
-                    db.hmset('Orders:'+corps_name+':'+division.uid
+                    db.hmset('Orders:'+corps_data.unit+':'+division.uid
                             ,"time",0
                             ,"order","reserve"
                             ,"objective",""
@@ -179,7 +236,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
 
                             // Ammo 3=first shot, 2=fresh, 1=depleted, 0=exhausted
                             for (var i=1; i <= bn.size; i++) {
-                                db.hmset(corps_name+':'+bn.uid+':'+i
+                                db.hmset(corps_data.unit+':'+bn.uid+':'+i
                                     ,'name',bn.name+' ('+i+' Bn)'
                                     ,'type',bn.type
                                     ,'morale','good'
@@ -216,7 +273,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
 
                         if (db) {
                             // Ammo 3=first shot, 2=fresh, 1=depleted, 0=exhausted
-                                db.hmset(corps_name+':'+bt.uid
+                                db.hmset(corps_data.unit+':'+bt.uid
                                     ,'name',bt.name
                                     ,'type',bt.type
                                     ,'morale','good'
@@ -253,7 +310,7 @@ load_corps = function(game,table,table_index,attacker_defender,corps_name,index,
                         });
 
                         if (db) {
-                            db.hmset(corps_name+':'+sq.uid
+                            db.hmset(corps_data.unit+':'+sq.uid
                                 ,'name',sq.name
                                 ,'type',sq.type
                                 ,'morale','good'

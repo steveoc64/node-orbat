@@ -1,5 +1,37 @@
 TODO
 
+Fri Aug 17 19:00:33 CST 2012
+============================
+** Add Grid and Objectives to each table
+- Generate Victory point scores for each objective per turn
+- Generate random terrain
+
+- umpire console :
+    - Show game details
+    - Start Game
+    - Show current time / weather
+    - Show tables
+    - View table
+    - Show players and commands
+    - New player attaches - popup icon for new player, assign to command
+    - Advance turn
+    - Disconnect player
+    - Auto timeout player
+
+- player console :
+    - Connect in 
+    - If assigned:
+        - Jump to content screen
+        - Show OOB
+        - Show time
+        - View table
+    else:
+        - Show login screen
+    
+- Apply twitter bootstrap
+
+====================================================================================================
+
 Sun Jul 29 10:24:50 CST 2012
 ============================
 - create master console app using flatiron

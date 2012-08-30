@@ -11,36 +11,57 @@ desc:   Set of IP addresses connected to commander units
 
 --------------------------------------------------------------------------------
 
+Table Details :
+===============
+
 name:   Tables
 type:   SET
 desc:   List of tables being played in the current game
 
---------------------------------------------------------------------------------
-
 name:   Table:<table_name>
 type:   HASH
-fields: [ attacker, defender ]
+fields: [ attacker, defender, size_x, size_y ]
 desc:   A description of the table, who is the attacker and who is the defender
+        Details of the size of the table - see Map: and Grid: below
+
+name:   Grid:<table_name>:<x,y>
+type:   HASH
+fields: [ ut, att, def ]
+desc:   ut = terrain type, att = attacker seen, def = defender seen 
+
+name:   Map:<table_name>:<ObjectiveName>
+type:   HASH
+fields: [ desc, x, y, current, att, def, value, cover ]
+desc:   Text description of the Objective, and x & y coords
+        Current = current owner of the objective
+        att = turns held by attacker
+        def = turns held by defender
+        value = Victory point value to the owner, per turn
+        cover = tactical cover value
+
+name:   Objectives:<table_name>
+type:   SET
+desc:   List of Objectives for this table
+
 
 --------------------------------------------------------------------------------
+
+Corps Details :
+===============
 
 name:   Corps:<table_name>:<side_name>
 type:   SET
 desc:   List of Corps that are controlled by a side for a given table. 
         Corps names are in the format   Country/Corps-Name
 
---------------------------------------------------------------------------------
-
 name:   <corps_name>:Divisions
 type:   SET
 desc:   List of Divisions in that Corps. Note that the Corps name is 
         in the format Countr/Corps-Name, so similar numbered corps from different nations do not clash
 
---------------------------------------------------------------------------------
-
 name:   <corps_name>
 type:   HASH
-fields: [ commander,prof_skill,inspiration ]
+fields: [ commander,prof_skill,inspiration,x,y,deploy ]
 desc:   Details of the Corps
 
 --------------------------------------------------------------------------------
