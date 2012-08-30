@@ -1,6 +1,6 @@
 #! /usr/bin/env nodemon
 //
-// La Node Bricole
+// La Node Bricole, a la baionette
 
 var http = require('http')
   , ss = require('socketstream')

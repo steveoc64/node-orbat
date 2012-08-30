@@ -1,0 +1,36 @@
+{
+"name": "Leipzig 1813",
+"year": "1813",
+"date": "1813-10-16",
+"startTime": "06:00",
+"gameTime": "06:00",
+"port": 1813,
+"tables": [
+    { "name": "Southern Front",
+     "attacker": {
+          "name": "Allies",
+          "corps": [ { "unit": "Prussia/II-Corps", "x": 6, "y": 1, "deploy": 3 } ]
+      },
+      "defender": {
+          "name": "France",
+          "corps": [ { "unit": "France/II-Corps", "x": 0, "y": 2.5, "deploy": 2 },
+                     { "unit": "France/V-Corps", "x": 0, "y": 5, "deploy": 6 }
+                   ]
+      },
+      "map": {
+          "size_x": 8, 
+          "size_y": 5,
+          "rolling": 0.65,
+          "terrain": [ "ltwoods", "impasse", "rocky", "hvwoods", "marchfeld", "marsh" ],
+          "objectives": [ 
+            { "name": "WurstHolz", "ut": "farmyard", "desc": "Small village / farmyard", "x": 1.0, "y": 2.5, "current": 0, "value": 1, "cover": "stone" },
+            { "name": "Royal Academy Of Excellence", "ut": "bua", "desc": "A large university complex", "x": 2.0, "y": 3.0, "current": 0, "value": 2, "cover": "heavy stone" },
+            { "name": "Lieberkollwitz", "ut": "bua", "desc": "Major Township", "x": 3.5, "y": 3.0, "current": 0, "value": 2, "cover": "wood stone" },
+            { "name": "Hill 302", "ut": "hill", "desc": "Hilltop 302", "x": 4.0, "y": 2.0, "current": 0, "value": 3, "cover": "stone" },
+            { "name": "Tollgate", "ut": "parklands", "desc": "Main entrance to Lieberkollwitz from the North", "x": 4.0, "y": 3.5, "current": 0, "value": 3, "cover": "ltwoods" },
+            { "name": "Sachsenleiderwald", "ut": "hvwoods", "desc": "Lovely natural woodlands of Sachsenleiderwald", "x": 1.0, "y": 1.5, "current": 0, "value": 1, "cover": "hvwoods" }
+          ]
+      }
+    }
+    ]
+}
